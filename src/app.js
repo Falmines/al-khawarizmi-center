@@ -40,26 +40,26 @@ app.get("/", (_request, response, next) => {
   response.sendFile(indexFile, (error) => {
     if (error) next(error);
   });
-  app.get("/admin", (_request, response, next) => {
-    response.sendFile(path.join(publicDirectory, "admin.html"), (error) => {
-      if (error) next(error);
-    });
+});
+app.get("/admin", (_request, response, next) => {
+  response.sendFile(path.join(publicDirectory, "admin.html"), (error) => {
+    if (error) next(error);
   });
-  app.get("/api/health", async (_request, response, next) => {
-    try {
-      if (!pool) {
-        response.status(503).json({
-          status: "unavailable",
-          database: "not_configured"
-        });
-        return;
-      }
-      await pool.query("SELECT 1");
-      response.json({ status: "ok", database: "connected" });
-    } catch (error) {
-      next(error);
+});
+app.get("/api/health", async (_request, response, next) => {
+  try {
+    if (!pool) {
+      response.status(503).json({
+        status: "unavailable",
+        database: "not_configured"
+      });
+      return;
     }
-  });
+    await pool.query("SELECT 1");
+    response.json({ status: "ok", database: "connected" });
+  } catch (error) {
+    next(error);
+  }
 });
 app.use(notFound);
 app.use(errorHandler);

@@ -8,9 +8,11 @@ export function errorHandler(error, _request, response, _next) {
     console.error(error);
   }
 
-  response.status(status).json({
+  const payload = {
     error: {
       message: status === 500 ? "Internal server error." : error.message
     }
-  });
+  };
+  if (status !== 500 && error.details) payload.error.details = error.details;
+  response.status(status).json(payload);
 }

@@ -16,5 +16,7 @@ export const env = Object.freeze({
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean),
-  postgresSsl: process.env.PGSSL === "true"
+  postgresSsl: process.env.PGSSL === "true",
+  adminEmail: process.env.ADMIN_EMAIL?.trim().toLowerCase() || null,
+  adminPassword: process.env.ADMIN_PASSWORD || null
 });

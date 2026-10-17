@@ -1,11 +1,35 @@
 import assert from "node:assert/strict";
 import { after, before, test } from "node:test";
 import app from "../src/app.js";
+import { pool } from "../src/config/database.js";
+import { programs } from "../src/data/programs.js";
 
 let server;
 let baseUrl;
+const originalPoolQuery = pool?.query;
 
 before(async () => {
+  if (pool) {
+    pool.query = async (query, values = []) => {
+      if (/FROM programs/i.test(query)) {
+        if (/WHERE slug = \$1/i.test(query)) {
+          return {
+            rows: programs.filter((program) => program.id === values[0]),
+            rowCount: 1
+          };
+        }
+
+        return { rows: programs, rowCount: programs.length };
+      }
+
+      if (/SELECT 1/i.test(query)) {
+        return { rows: [{ "?column?": 1 }], rowCount: 1 };
+      }
+
+      throw new Error(`Unexpected test database query: ${query}`);
+    };
+  }
+
   server = app.listen(0, "127.0.0.1");
   await new Promise((resolve, reject) => {
     server.once("listening", resolve);
@@ -19,6 +43,10 @@ after(async () => {
     await new Promise((resolve, reject) => {
       server.close((error) => (error ? reject(error) : resolve()));
     });
+  }
+
+  if (pool && originalPoolQuery) {
+    pool.query = originalPoolQuery;
   }
 });
 

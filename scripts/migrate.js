@@ -15,9 +15,19 @@ if (!pool) {
   );
 }
 
-const client = await pool.connect();
+let client;
 
 try {
+  try {
+    client = await pool.connect();
+  } catch (error) {
+    const reason = error.code ?? error.message;
+    throw new Error(
+      `Could not connect to PostgreSQL (${reason}). Verify that DATABASE_URL uses the correct project hostname, port, database, and password.`,
+      { cause: error }
+    );
+  }
+
   await client.query("BEGIN");
   await client.query(`
     CREATE TABLE IF NOT EXISTS schema_migrations (
@@ -62,6 +72,6 @@ try {
 
   console.log("Database migrations are up to date.");
 } finally {
-  client.release();
+  client?.release();
   await pool.end();
 }

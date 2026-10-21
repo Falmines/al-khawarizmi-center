@@ -9,7 +9,7 @@ import programRoutes from "./routes/programRoutes.js";
 import { ApiError } from "./errors.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import { notFound } from "./middleware/notFound.js";
-import { pool } from "./config/database.js";
+import { pool } from "../db/db.js";
 
 const app = express();
 const publicDirectory = fileURLToPath(new URL("../public/", import.meta.url));
@@ -58,7 +58,11 @@ app.get("/api/health", async (_request, response, next) => {
     await pool.query("SELECT 1");
     response.json({ status: "ok", database: "connected" });
   } catch (error) {
-    next(error);
+    console.error("PostgreSQL health check failed:", error.message);
+    response.status(503).json({
+      status: "unavailable",
+      database: "unreachable"
+    });
   }
 });
 app.use(notFound);

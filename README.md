@@ -63,7 +63,7 @@ dijalankan.
 | `PGDATABASE` | `al_khawarizmi_center` | Nama database. |
 | `PGUSER` | `postgres` | Pengguna database. |
 | `PGPASSWORD` | — | Password database; diperlukan untuk membentuk URL dari variabel `PG*`. |
-| `PGSSL` | `false` | Atur `true` jika provider PostgreSQL mewajibkan TLS. |
+| `PGSSL` | `false` | `false` tanpa TLS, `true`/`verify-full` dengan verifikasi sertifikat, atau `require` untuk TLS tanpa verifikasi CA (gunakan hanya bila provider mengharuskan). |
 | `JWT_SECRET` | Secret development bawaan | Belum digunakan oleh endpoint autentikasi; jangan mengandalkan nilai bawaan di production. |
 | `JWT_EXPIRES_IN` | `1h` | Konfigurasi yang disiapkan untuk JWT; belum digunakan endpoint saat ini. |
 | `CORS_ORIGIN` | kosong | Allowlist origin, dipisahkan koma. |
@@ -95,6 +95,12 @@ hanya mengembalikan baris berstatus `published`. Tanpa konfigurasi database,
 endpoint tersebut menggunakan data bawaan `src/data/programs.js` agar website
 tetap berfungsi lokal. Kegagalan query saat database dikonfigurasi akan
 dilaporkan sebagai error, bukan disamarkan dengan fallback.
+
+Untuk Supabase, gunakan connection string dari **Project Settings → Database**.
+Jika memakai transaction pooler, gunakan hostname dan port yang diberikan
+Supabase (umumnya port `6543`) serta username `postgres.<project-ref>`.
+`PGSSL=require` tetap mengenkripsi koneksi, tetapi tidak memverifikasi sertifikat
+CA; pilih `verify-full` jika memiliki CA certificate yang dapat dipercaya.
 
 Autentikasi JWT dan operasi CRUD database untuk pengguna, proyek riset,
 kemitraan, pesan kontak, dan activity log belum diimplementasikan. Migrasi

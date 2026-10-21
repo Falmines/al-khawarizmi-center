@@ -1,4 +1,4 @@
-import { pool } from "../config/database.js";
+import { pool } from "../../db/db.js";
 import { programs as defaultPrograms } from "../data/programs.js";
 
 const publishedProgramsQuery = `

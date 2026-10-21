@@ -37,9 +37,14 @@ const buildDatabaseUrl = () => {
 };
 
 const port = Number(process.env.PORT ?? 3000);
+const postgresSsl = (cleanValue(process.env.PGSSL) ?? "false").toLowerCase();
 
 if (!Number.isInteger(port) || port < 1 || port > 65535) {
   throw new Error("PORT must be an integer between 1 and 65535.");
+}
+
+if (!["false", "true", "require", "verify-full"].includes(postgresSsl)) {
+  throw new Error("PGSSL must be false, true, require, or verify-full.");
 }
 
 export const env = Object.freeze({
@@ -52,7 +57,7 @@ export const env = Object.freeze({
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean),
-  postgresSsl: cleanValue(process.env.PGSSL) === "true",
+  postgresSsl,
   adminEmail: cleanValue(process.env.ADMIN_EMAIL)?.toLowerCase() ?? null,
   adminPassword: cleanValue(process.env.ADMIN_PASSWORD) ?? null
 });

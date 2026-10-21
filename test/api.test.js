@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { after, before, test } from "node:test";
 import app from "../src/app.js";
-import { pool } from "../src/config/database.js";
+import { pool } from "../db/db.js";
 import { programs } from "../src/data/programs.js";
 
 let server;
@@ -75,6 +75,30 @@ test("returns health status and security headers", async () => {
   assert.equal(body.status, "ok");
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
   assert.equal(response.headers.get("x-powered-by"), null);
+});
+
+test("reports PostgreSQL connection failures as service unavailable", async () => {
+  if (!pool) {
+    return;
+  }
+
+  const originalQuery = pool.query;
+  pool.query = async () => {
+    throw Object.assign(new Error("database unavailable"), {
+      code: "ENOTFOUND"
+    });
+  };
+
+  try {
+    const response = await fetch(`${baseUrl}/api/health`);
+    assert.equal(response.status, 503);
+    assert.deepEqual(await response.json(), {
+      status: "unavailable",
+      database: "unreachable"
+    });
+  } finally {
+    pool.query = originalQuery;
+  }
 });
 
 test("lists programs and returns one program by ID", async () => {

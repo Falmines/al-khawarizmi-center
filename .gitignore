@@ -13,3 +13,5 @@ yarn-debug.log*
 *.key
 *credentials*.json
 *-service-account*.json
+.vercel/
+*.log

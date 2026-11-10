@@ -134,4 +134,4 @@ const activeObserver = new IntersectionObserver(entries => {
 
 sections.forEach(section => activeObserver.observe(section));
 
-console.log("Al-Khawarizmi Company Profile · Grand Plan 2026–2030 loaded.");
+console.log("Al-Khawarizmi Center · Grand Plan 2027–2031 loaded.");

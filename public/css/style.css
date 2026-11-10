@@ -1813,3 +1813,307 @@ footer{background:#100d0c;color:#bfae98;padding:55px 0 0}
   border-radius:50%;
   mix-blend-mode:screen;
 }
+
+:root{
+  --poster-ink:#041b18;
+  --poster-green:#073d31;
+  --poster-green-light:#0c5a43;
+  --poster-gold:#e7bf62;
+  --poster-pale:#fff1c4;
+}
+
+html{scroll-padding-top:92px}
+.header{
+  background:
+    radial-gradient(ellipse at 74% 40%,rgba(16,91,92,.42),transparent 33%),
+    radial-gradient(ellipse at 49% 100%,rgba(222,171,69,.15),transparent 36%),
+    linear-gradient(125deg,#031714 0%,#07372e 56%,#041b18 100%);
+}
+.header:after{
+  opacity:.22;
+  background-image:
+    radial-gradient(ellipse at center,transparent 47%,rgba(231,191,98,.2) 48%,transparent 49%),
+    linear-gradient(30deg,transparent 49%,rgba(231,191,98,.08) 50%,transparent 51%);
+  background-size:190px 130px,80px 80px;
+}
+.navbar{border-bottom:1px solid rgba(231,191,98,.16)}
+.brand{color:var(--poster-pale)}
+.brand img{filter:drop-shadow(0 0 12px rgba(231,191,98,.22))}
+.grandplan-menu{background:rgba(3,25,22,.98)}
+.nav-menu>a:hover,.nav-dropdown-toggle:hover,.nav-dropdown:hover .nav-dropdown-toggle{color:var(--poster-pale)}
+.location-label{border-radius:999px;background:rgba(3,20,17,.36)}
+.hero-kicker{color:var(--poster-gold)}
+.hero h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(54px,7vw,94px);
+  letter-spacing:-2px;
+  line-height:.97;
+}
+.hero h1 span{
+  color:var(--poster-gold);
+  text-shadow:0 0 35px rgba(231,191,98,.2);
+}
+.hero .hero-text{max-width:620px;font-size:clamp(15px,1.5vw,19px)}
+.hero-meta{max-width:650px}
+.hero-logo{filter:drop-shadow(0 16px 40px rgba(0,0,0,.24))}
+.hero-seal-frame{width:min(460px,100%)}
+.hero-seal-frame:before{
+  inset:4%;
+  border:1px solid rgba(231,191,98,.48);
+  box-shadow:0 0 0 12px rgba(231,191,98,.045),0 0 70px rgba(231,191,98,.2),inset 0 0 50px rgba(231,191,98,.12);
+}
+.hero-seal-caption{max-width:100%;text-align:center;line-height:1.6}
+
+.facilities-section{
+  padding-block:88px;
+  background:
+    radial-gradient(ellipse at 80% 10%,rgba(17,103,84,.2),transparent 34%),
+    linear-gradient(145deg,#041b18,#082b25 56%,#041b18);
+}
+.facilities-heading{align-items:center}
+.facilities-heading h2{font-family:Georgia,"Times New Roman",serif}
+.facility-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.facility-card{border-radius:12px;background:rgba(3,20,17,.88)}
+.facility-art{height:150px}
+.facility-art span{font-size:52px}
+.facility-copy{min-height:136px;padding:17px}
+.facility-copy>span{font-size:8px;color:var(--poster-gold)}
+.facility-copy h3{font-size:17px;color:var(--poster-pale)}
+.facility-copy p{font-size:11px;color:#c6d2c8}
+.pillar-education .facility-art{background:linear-gradient(140deg,#164c42,#09221d)}
+.pillar-research .facility-art{background:linear-gradient(140deg,#12495c,#081e26)}
+.pillar-philanthropy .facility-art{background:linear-gradient(140deg,#59441e,#241b0b)}
+.pillar-empowerment .facility-art{background:linear-gradient(140deg,#235536,#0b281c)}
+
+.about{background:linear-gradient(180deg,#fffdf5,#f7f0df)}
+.about h2,.activities h2,.contact-box h2{font-family:Georgia,"Times New Roman",serif}
+.about-card{border-color:rgba(212,175,55,.48);border-radius:18px}
+.about-visual{
+  border-radius:12px;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(231,191,98,.25),transparent 27%),
+    linear-gradient(145deg,#0b493a,#041b18 76%);
+}
+.vision-mission{
+  background:
+    radial-gradient(ellipse at 50% 0,rgba(17,108,87,.34),transparent 40%),
+    linear-gradient(145deg,#031a17,#073d31 55%,#031a17);
+}
+.vision-mission .section-heading h2{font-family:Georgia,"Times New Roman",serif}
+.vm-card{
+  border-color:rgba(231,191,98,.55);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(0,0,0,.12));
+}
+.vision-card h3{font-family:Georgia,"Times New Roman",serif;line-height:1.45}
+.mission-list div{align-items:start}
+.mission-list b{color:var(--poster-gold)}
+.mission-list span{font-size:12px;line-height:1.65}
+.mission-list strong{color:var(--poster-pale)}
+.values-strip{border-color:rgba(231,191,98,.5);color:var(--poster-pale)}
+
+.grand-plan{
+  padding:100px 0;
+  color:#fff9e8;
+  background:
+    radial-gradient(ellipse at 85% 12%,rgba(17,96,79,.28),transparent 35%),
+    radial-gradient(ellipse at 10% 70%,rgba(158,91,29,.1),transparent 35%),
+    linear-gradient(150deg,#031815,#062c25 52%,#031815);
+}
+.grand-plan .section-heading{max-width:900px;margin-bottom:38px}
+.grand-plan .vm-title-highlight{
+  display:inline-block;
+  padding:22px 40px;
+  border:1px solid rgba(231,191,98,.72);
+  border-radius:5px;
+  background:linear-gradient(120deg,#071d19,#103b30 50%,#071d19)!important;
+  box-shadow:0 0 30px rgba(231,191,98,.12),inset 0 0 30px rgba(231,191,98,.045);
+}
+.grand-plan .vm-title-label{color:var(--poster-gold)!important}
+.grand-plan .vm-title-highlight h2{
+  color:var(--poster-pale)!important;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(35px,5vw,58px);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.grand-plan .roadmap-intro{
+  max-width:720px;
+  margin:22px auto 0;
+  color:#d5e0d8;
+  font-size:14px;
+  line-height:1.8;
+}
+.grandplan-tabs{
+  top:12px;
+  max-width:920px;
+  border-color:rgba(231,191,98,.56);
+  background:rgba(4,27,24,.94);
+  box-shadow:0 14px 40px rgba(0,0,0,.3);
+}
+.plan-tab{color:#d7d2c0}
+.plan-tab:hover,.plan-tab.active{
+  background:linear-gradient(135deg,#f3d683,#c99637);
+  color:#14231c;
+}
+.plan-list{gap:30px}
+.roadmap-year{
+  padding:clamp(20px,3vw,34px);
+  border:1px solid rgba(231,191,98,.58);
+  border-radius:15px;
+  background:
+    radial-gradient(ellipse at 100% 0,rgba(14,79,63,.24),transparent 38%),
+    linear-gradient(145deg,#062620,#031a17 72%);
+  box-shadow:0 18px 50px rgba(0,0,0,.22);
+}
+.roadmap-year .plan-year-head{
+  margin-bottom:22px;
+  border-color:rgba(231,191,98,.24);
+}
+.roadmap-year .year-number{
+  color:#17231a;
+  border-color:var(--poster-pale);
+  background:linear-gradient(145deg,#f6df9e,#bd8e37);
+}
+.roadmap-year .plan-year-head p{color:var(--poster-gold)}
+.roadmap-year .plan-year-head h3{
+  color:var(--poster-pale);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(34px,4vw,48px);
+}
+.roadmap-year .year-focus{
+  color:var(--poster-pale);
+  border-color:rgba(231,191,98,.55);
+  background:rgba(231,191,98,.07);
+  text-align:center;
+  line-height:1.5;
+}
+.roadmap-phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.roadmap-phase{
+  min-width:0;
+  padding:20px 19px;
+  border:1px solid rgba(231,191,98,.38);
+  border-radius:11px;
+  background:linear-gradient(155deg,rgba(14,68,56,.82),rgba(3,25,22,.92));
+}
+.phase-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  min-height:24px;
+  margin-bottom:13px;
+  color:var(--poster-gold);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1.1px;
+}
+.roadmap-phase h4{
+  min-height:58px;
+  margin-bottom:12px;
+  color:var(--poster-pale);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(17px,1.65vw,22px);
+  line-height:1.25;
+}
+.phase-meta span+span{color:#d9d4c6;font-size:8px}
+.phase-meta span+span:empty{display:none}
+.roadmap-phase ul{display:grid;gap:10px;list-style:none}
+.roadmap-phase li{
+  position:relative;
+  padding-left:16px;
+  color:#d4dfd6;
+  font-size:11px;
+  line-height:1.6;
+}
+.roadmap-phase li:before{
+  content:"";
+  position:absolute;
+  top:.62em;
+  left:0;
+  width:6px;
+  height:6px;
+  border:1px solid var(--poster-gold);
+  transform:rotate(45deg);
+}
+.year-vision{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:14px;
+  margin-top:17px;
+  padding:14px 17px;
+  border:1px solid rgba(231,191,98,.4);
+  border-radius:9px;
+  background:rgba(0,0,0,.16);
+}
+.year-vision b{color:var(--poster-gold);font-size:9px;letter-spacing:1px}
+.year-vision span{color:#e0e5d9;font-size:10px}
+.year-vision em{
+  color:var(--poster-pale);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:13px;
+  font-weight:700;
+  text-align:right;
+}
+.roadmap-year.plan-final{border-color:var(--poster-gold)}
+.activities{background:#fffaf0}
+.activity-card{border-color:#e4d3ad;border-radius:14px}
+.activity-card h3{font-family:Georgia,"Times New Roman",serif}
+.impact,.support{
+  background:
+    radial-gradient(ellipse at 75% 15%,rgba(17,104,80,.34),transparent 38%),
+    linear-gradient(125deg,#031a17,#073d31 55%,#031a17);
+}
+.support-grid h2{font-family:Georgia,"Times New Roman",serif}
+footer{background:#031512}
+.footer-brand small{color:#ddc781}
+.copyright{border-color:rgba(231,191,98,.2)}
+
+@media(max-width:1050px){
+  .facility-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .roadmap-phases{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .roadmap-phase:last-child:nth-child(odd){grid-column:1/-1}
+  .roadmap-phase h4{min-height:0}
+}
+@media(max-width:767px){
+  html{scroll-padding-top:75px}
+  .hero{padding-block:34px 48px}
+  .hero-logo{width:min(250px,68vw);opacity:1;margin:2px auto 0}
+  .hero-seal-caption{white-space:normal;font-size:7px;letter-spacing:1px}
+  .facilities-section{padding:66px 0}
+  .facilities-heading h2{font-size:clamp(34px,9vw,44px)}
+  .facility-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .facility-art{height:105px}
+  .facility-copy{min-height:135px;padding:12px}
+  .facility-copy h3{font-size:14px}
+  .facility-copy p{font-size:9px}
+  .grand-plan{padding:70px 0}
+  .grand-plan .vm-title-highlight{padding:18px 20px}
+  .grandplan-tabs{gap:3px;padding:5px}
+  .plan-tab{min-height:52px}
+  .plan-tab b{font-size:13px}
+  .plan-tab span{font-size:7px;letter-spacing:0}
+  .roadmap-year{padding:18px 14px}
+  .roadmap-year .plan-year-head{gap:10px}
+  .roadmap-year .year-focus{max-width:120px;padding:7px 9px;font-size:7px}
+  .roadmap-phases{grid-template-columns:1fr}
+  .roadmap-phase:last-child:nth-child(odd){grid-column:auto}
+  .roadmap-phase{padding:17px}
+  .roadmap-phase h4{font-size:19px}
+  .roadmap-phase li{font-size:11px}
+  .year-vision{grid-template-columns:1fr;gap:5px}
+  .year-vision em{text-align:left;margin-top:3px}
+}
+@media(max-width:420px){
+  .facility-grid{grid-template-columns:1fr}
+  .facility-art{height:120px}
+  .facility-copy{min-height:0}
+  .grandplan-tabs{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .plan-tab span{font-size:6px}
+  .roadmap-year .year-focus{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}

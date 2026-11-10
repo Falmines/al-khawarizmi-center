@@ -2379,3 +2379,57 @@ footer{background:#031512}
   .poster-zoom-controls{gap:4px}
   .poster-zoom-controls button{min-width:34px;min-height:34px;padding-inline:7px}
 }
+
+@media(max-width:767px){
+  .modal{padding:12px}
+  .modal-content{
+    width:100%;
+    max-height:calc(100dvh - 24px);
+    padding:38px 20px 24px;
+    border-radius:12px;
+  }
+  .modal-content h2{
+    font-size:clamp(26px,8vw,36px);
+    overflow-wrap:anywhere;
+  }
+  .modal-content .btn{
+    max-width:100%;
+    min-height:48px;
+    padding-inline:14px;
+    white-space:normal;
+  }
+  .contact-box h2{font-size:clamp(28px,8vw,40px)}
+  .poster-viewer{
+    width:calc(100vw - 20px);
+    height:calc(100dvh - 20px);
+    max-height:calc(100dvh - 20px);
+    margin:auto;
+    padding:12px;
+    border-radius:12px;
+  }
+  .poster-viewer-header{gap:10px;padding-bottom:10px}
+  .poster-zoom-controls{flex-wrap:wrap}
+  .poster-viewer-stage{height:calc(100% - 140px);margin-top:8px}
+  .poster-viewer-stage img{max-width:100%;max-height:100%}
+  .poster-viewer-hint{padding:7px 4px 0;font-size:9px}
+}
+@media(max-width:600px){
+  #grandplan-posters .roadmap-profile-posters{
+    grid-template-columns:minmax(0,1fr);
+    max-width:340px;
+  }
+  #grandplan-posters .poster-year .poster-gallery{grid-template-columns:minmax(0,1fr)}
+  #grandplan-posters .poster-card figcaption{font-size:12px}
+  .poster-year>h3{margin-bottom:12px}
+}
+@media(max-width:380px){
+  .container{padding-inline:14px}
+  .navbar{padding-inline:14px}
+  .brand{gap:7px}
+  .brand b{font-size:14px;letter-spacing:.5px}
+  .brand small{font-size:5px;letter-spacing:.8px}
+  .menu-toggle{width:40px;height:40px}
+  .modal-content{padding-inline:16px}
+  .poster-viewer-header h2{font-size:15px}
+  .poster-zoom-controls{justify-content:space-between}
+}

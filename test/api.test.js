@@ -39,6 +39,28 @@ test("serves the website and its assets", async () => {
   }
 });
 
+test("serves every Grand Plan poster in the separate poster gallery", async () => {
+  const page = await fetch(baseUrl);
+  const html = await page.text();
+  const visionIndex = html.indexOf('id="vision-mission"');
+  const posterIndex = html.indexOf('id="grandplan-posters"');
+  const textPlanIndex = html.indexOf('id="grandplan"');
+  const posterPaths = [...html.matchAll(/data-poster-src="([^"]+)"/g)].map((match) => match[1]);
+
+  assert.ok(visionIndex >= 0 && visionIndex < posterIndex);
+  assert.ok(posterIndex < textPlanIndex);
+  assert.equal(posterPaths.length, 15);
+
+  for (const year of [2027, 2028, 2029, 2030, 2031]) {
+    for (const phase of [1, 2, 3]) {
+      const posterPath = `/assets/images/grand-plan/${year}-phase-${phase}.png`;
+      assert.ok(posterPaths.includes(posterPath), `${posterPath} should appear in the gallery`);
+      const response = await fetch(new URL(posterPath, baseUrl), { method: "HEAD" });
+      assert.equal(response.status, 200, `${posterPath} should be served`);
+    }
+  }
+});
+
 test("returns health status and security headers", async () => {
   const response = await fetch(`${baseUrl}/api/v1/health`);
   const body = await response.json();

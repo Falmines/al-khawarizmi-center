@@ -88,17 +88,56 @@ $$("[data-program]").forEach(button => {
 });
 
 /* =========================
+   GRAND PLAN POSTER VIEWER
+   ========================= */
+const posterViewer = $("#posterViewer");
+const posterViewerImage = $("#posterViewerImage");
+const posterViewerTitle = $("#posterViewerTitle");
+const posterZoomValue = $("#posterZoomValue");
+const posterZoomIn = $("#posterZoomIn");
+const posterZoomOut = $("#posterZoomOut");
+let posterZoom = 1;
+
+function updatePosterZoom(nextZoom) {
+  posterZoom = Math.min(2.5, Math.max(0.5, nextZoom));
+  posterViewerImage.style.transform = `scale(${posterZoom})`;
+  posterZoomValue.textContent = `${Math.round(posterZoom * 100)}%`;
+  posterZoomIn.disabled = posterZoom === 2.5;
+  posterZoomOut.disabled = posterZoom === 0.5;
+}
+
+$$(".poster-open").forEach(button => {
+  button.addEventListener("click", () => {
+    posterViewerImage.src = button.dataset.posterSrc;
+    posterViewerImage.alt = button.getAttribute("aria-label");
+    posterViewerTitle.textContent = button.dataset.posterTitle;
+    updatePosterZoom(1);
+    posterViewer.showModal();
+  });
+});
+
+posterZoomIn.addEventListener("click", () => updatePosterZoom(posterZoom + 0.25));
+posterZoomOut.addEventListener("click", () => updatePosterZoom(posterZoom - 0.25));
+$("#posterZoomReset").addEventListener("click", () => updatePosterZoom(1));
+$("#posterViewerClose").addEventListener("click", () => posterViewer.close());
+
+/* =========================
    SCROLL REVEAL
    ========================= */
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add("visible");
-    revealObserver.unobserve(entry.target);
-  });
-}, { threshold: 0.10 });
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.10 });
 
-$$(".reveal").forEach(el => revealObserver.observe(el));
+  document.documentElement.classList.add("reveal-enabled");
+  $$(".reveal").forEach(el => revealObserver.observe(el));
+} else {
+  $$(".reveal").forEach(el => el.classList.add("visible"));
+}
 
 /* =========================
    GRAND PLAN ACTIVE YEAR

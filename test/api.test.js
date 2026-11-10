@@ -46,10 +46,26 @@ test("serves every Grand Plan poster in the separate poster gallery", async () =
   const posterIndex = html.indexOf('id="grandplan-posters"');
   const textPlanIndex = html.indexOf('id="grandplan"');
   const posterPaths = [...html.matchAll(/data-poster-src="([^"]+)"/g)].map((match) => match[1]);
+  const previewPaths = [...html.matchAll(/<img src="(\/assets\/images\/grand-plan\/thumbnails\/[^"]+\.jpg)"/g)].map((match) => match[1]);
 
   assert.ok(visionIndex >= 0 && visionIndex < posterIndex);
   assert.ok(posterIndex < textPlanIndex);
-  assert.equal(posterPaths.length, 15);
+  assert.equal(posterPaths.length, 18);
+  assert.equal(previewPaths.length, 18);
+
+  for (const posterPath of [
+    "/assets/images/grand-plan/visi-misi.png",
+    "/assets/images/grand-plan/vision.png",
+    "/assets/images/grand-plan/mission.png"
+  ]) {
+    assert.ok(posterPaths.includes(posterPath), `${posterPath} should appear in the gallery`);
+    const posterResponse = await fetch(new URL(posterPath, baseUrl), { method: "HEAD" });
+    assert.equal(posterResponse.status, 200, `${posterPath} should be served`);
+    const previewPath = posterPath.replace("/grand-plan/", "/grand-plan/thumbnails/").replace(".png", ".jpg");
+    assert.ok(previewPaths.includes(previewPath), `${previewPath} should be used for the thumbnail`);
+    const previewResponse = await fetch(new URL(previewPath, baseUrl), { method: "HEAD" });
+    assert.equal(previewResponse.status, 200, `${previewPath} should be served`);
+  }
 
   for (const year of [2027, 2028, 2029, 2030, 2031]) {
     for (const phase of [1, 2, 3]) {
@@ -57,6 +73,10 @@ test("serves every Grand Plan poster in the separate poster gallery", async () =
       assert.ok(posterPaths.includes(posterPath), `${posterPath} should appear in the gallery`);
       const response = await fetch(new URL(posterPath, baseUrl), { method: "HEAD" });
       assert.equal(response.status, 200, `${posterPath} should be served`);
+      const previewPath = posterPath.replace("/grand-plan/", "/grand-plan/thumbnails/").replace(".png", ".jpg");
+      assert.ok(previewPaths.includes(previewPath), `${previewPath} should be used for the thumbnail`);
+      const previewResponse = await fetch(new URL(previewPath, baseUrl), { method: "HEAD" });
+      assert.equal(previewResponse.status, 200, `${previewPath} should be served`);
     }
   }
 });

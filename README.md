@@ -113,3 +113,4 @@ server.js               Entrypoint server
 Roadmap 2026–2030 dan fasilitas kawasan merupakan adaptasi visi pengembangan,
 bukan klaim kegiatan yang telah terlaksana. Realisasi fasilitas mengikuti
 tahapan, kajian, dan kemitraan.
+# al-khawarizmi-center

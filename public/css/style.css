@@ -2236,6 +2236,31 @@ footer{background:#031512}
   min-height:48px;
   font-size:12px;
 }
+#grandplan-posters .roadmap-profile-posters{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  max-width:1100px;
+}
+#grandplan-posters .roadmap-profile-posters .poster-card{
+  min-width:0;
+}
+#grandplan-posters .roadmap-profile-posters .poster-card figcaption{
+  font-size:clamp(10px,1vw,13px);
+}
+#grandplan-posters .poster-year-list{
+  max-width:1100px;
+  margin-inline:auto;
+}
+#grandplan-posters .poster-year{
+  padding:clamp(15px,2.2vw,24px);
+}
+#grandplan-posters .poster-year .poster-gallery{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(10px,1.6vw,18px);
+}
+#grandplan-posters .poster-card figcaption{
+  min-height:58px;
+  padding:10px 8px;
+}
 .poster-viewer{
   width:min(1120px,96vw);
   max-width:none;
@@ -2327,22 +2352,18 @@ footer{background:#031512}
 }
 @media(max-width:900px){
   .poster-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #grandplan-posters .poster-year .poster-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(max-width:600px){
   .poster-gallery{grid-template-columns:1fr;gap:14px}
   .poster-intro{margin-top:38px}
   .roadmap-years-intro{margin-top:38px}
-  .profile-posters{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .profile-posters .poster-card:last-child{
-    grid-column:1/-1;
-    width:min(100%,180px);
-    justify-self:center;
-  }
   .poster-roadmap{padding:60px 0}
   .poster-roadmap-heading{margin-bottom:24px}
   .poster-roadmap-heading p{font-size:12px}
   .poster-year{padding:14px}
   .poster-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  #grandplan-posters .poster-year .poster-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
   .poster-card figcaption{font-size:9px;padding-inline:8px}
   .poster-roadmap .poster-card figcaption{font-size:10px}
   .poster-viewer{padding:12px}
@@ -2353,6 +2374,8 @@ footer{background:#031512}
 }
 @media(max-width:380px){
   .poster-roadmap .poster-gallery{grid-template-columns:1fr}
+  #grandplan-posters .roadmap-profile-posters{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #grandplan-posters .poster-year .poster-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
   .poster-zoom-controls{gap:4px}
   .poster-zoom-controls button{min-width:34px;min-height:34px;padding-inline:7px}
 }

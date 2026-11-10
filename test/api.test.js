@@ -47,11 +47,23 @@ test("serves every Grand Plan poster in the separate poster gallery", async () =
   const textPlanIndex = html.indexOf('id="grandplan"');
   const posterPaths = [...html.matchAll(/data-poster-src="([^"]+)"/g)].map((match) => match[1]);
   const previewPaths = [...html.matchAll(/<img src="(\/assets\/images\/grand-plan\/thumbnails\/[^"]+\.jpg)"/g)].map((match) => match[1]);
+  const expectedPosterOrder = [
+    "/assets/images/grand-plan/vision.png",
+    "/assets/images/grand-plan/visi-misi.png",
+    "/assets/images/grand-plan/mission.png",
+    ...[2027, 2028, 2029, 2030, 2031].flatMap((year) =>
+      [1, 2, 3].map((phase) => `/assets/images/grand-plan/${year}-phase-${phase}.png`)
+    )
+  ];
 
   assert.ok(visionIndex >= 0 && visionIndex < posterIndex);
   assert.ok(posterIndex < textPlanIndex);
   assert.equal(posterPaths.length, 18);
+  assert.deepEqual(posterPaths, expectedPosterOrder);
   assert.equal(previewPaths.length, 18);
+  assert.match(html, /id="posterZoomIn"/);
+  assert.match(html, /id="posterZoomOut"/);
+  assert.match(html, /id="posterZoomReset"/);
 
   for (const posterPath of [
     "/assets/images/grand-plan/visi-misi.png",
@@ -79,6 +91,14 @@ test("serves every Grand Plan poster in the separate poster gallery", async () =
       assert.equal(previewResponse.status, 200, `${previewPath} should be served`);
     }
   }
+});
+
+test("links contact buttons to the Al-Khawarizmi WhatsApp number", async () => {
+  const response = await fetch(baseUrl);
+  const html = await response.text();
+
+  assert.match(html, /api\.whatsapp\.com\/send\?phone=6285891099220/);
+  assert.doesNotMatch(html, /phone=085891099220/);
 });
 
 test("returns health status and security headers", async () => {

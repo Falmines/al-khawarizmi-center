@@ -96,6 +96,7 @@ const posterViewerTitle = $("#posterViewerTitle");
 const posterZoomValue = $("#posterZoomValue");
 const posterZoomIn = $("#posterZoomIn");
 const posterZoomOut = $("#posterZoomOut");
+const posterViewerStage = $(".poster-viewer-stage");
 let posterZoom = 1;
 
 function updatePosterZoom(nextZoom) {
@@ -112,6 +113,7 @@ $$(".poster-open").forEach(button => {
     posterViewerImage.alt = button.getAttribute("aria-label");
     posterViewerTitle.textContent = button.dataset.posterTitle;
     updatePosterZoom(1);
+    posterViewerStage.scrollTo(0, 0);
     posterViewer.showModal();
   });
 });
@@ -120,6 +122,16 @@ posterZoomIn.addEventListener("click", () => updatePosterZoom(posterZoom + 0.25)
 posterZoomOut.addEventListener("click", () => updatePosterZoom(posterZoom - 0.25));
 $("#posterZoomReset").addEventListener("click", () => updatePosterZoom(1));
 $("#posterViewerClose").addEventListener("click", () => posterViewer.close());
+posterViewerStage.addEventListener("wheel", event => {
+  event.preventDefault();
+  updatePosterZoom(posterZoom + (event.deltaY < 0 ? 0.1 : -0.1));
+}, { passive: false });
+posterViewer.addEventListener("click", event => {
+  if (event.target === posterViewer) posterViewer.close();
+});
+posterViewer.addEventListener("close", () => {
+  posterViewerImage.removeAttribute("src");
+});
 
 /* =========================
    SCROLL REVEAL

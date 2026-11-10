@@ -1,0 +1,18 @@
+﻿{
+  "watch": [
+    "server.js",
+    "src",
+    "database"
+  ],
+  "ext": "js,json",
+  "ignore": [
+    "node_modules",
+    ".git",
+    ".vercel",
+    "backup-server",
+    "logs",
+    "coverage",
+    "public"
+  ],
+  "delay": 1000
+}

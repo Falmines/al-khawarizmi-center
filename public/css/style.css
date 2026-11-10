@@ -2117,3 +2117,60 @@ footer{background:#031512}
   html{scroll-behavior:auto}
   *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+.poster-intro{
+  margin:48px 0 18px;
+  text-align:center;
+}
+.poster-intro .vm-title-label{color:var(--poster-gold)}
+.poster-intro h3{
+  margin-top:5px;
+  color:var(--poster-pale);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(23px,3vw,34px);
+}
+.poster-intro p{color:#d5e0d8;font-size:12px}
+.poster-gallery{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.profile-posters{max-width:1000px;margin:0 auto}
+.roadmap-posters{margin-top:22px}
+.poster-card{
+  min-width:0;
+  overflow:hidden;
+  border:1px solid rgba(231,191,98,.45);
+  border-radius:12px;
+  background:rgba(0,0,0,.2);
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+}
+.poster-card a{display:block;overflow:hidden}
+.poster-card img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+.poster-card a:hover img,
+.poster-card a:focus-visible img{transform:scale(1.025)}
+.poster-card figcaption{
+  min-height:46px;
+  display:grid;
+  place-items:center;
+  padding:10px 12px;
+  color:var(--poster-pale);
+  font-size:10px;
+  font-weight:700;
+  line-height:1.5;
+  text-align:center;
+}
+.profile-posters .poster-card{background:rgba(255,255,255,.06)}
+@media(max-width:900px){
+  .poster-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+  .poster-gallery{grid-template-columns:1fr;gap:14px}
+  .poster-intro{margin-top:38px}
+  .poster-card img{aspect-ratio:3/4;object-fit:contain;background:#031a17}
+}
